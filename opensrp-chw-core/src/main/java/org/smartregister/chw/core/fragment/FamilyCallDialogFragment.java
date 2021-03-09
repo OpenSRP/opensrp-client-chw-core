@@ -30,16 +30,16 @@ public class FamilyCallDialogFragment extends DialogFragment implements FamilyCa
     public static final String DIALOG_TAG = "FamilyCallWidgetDialogFragment_DIALOG_TAG";
     private View.OnClickListener listener = null;
     private FamilyCallDialogContract.Dialer mDialer;
-    private String familyBaseEntityId;
-    private LinearLayout llFamilyHead;
-    private TextView tvFamilyHeadTitle;
-    private TextView tvFamilyHeadName;
-    private TextView tvFamilyHeadPhone;
-    private LinearLayout llCareGiver;
-    private TextView tvCareGiverTitle;
-    private TextView tvCareGiverName;
-    private TextView tvCareGiverPhone;
-    private TextView dialogTitle;
+    protected String familyBaseEntityId;
+    protected LinearLayout llFamilyHead;
+    protected TextView tvFamilyHeadTitle;
+    protected TextView tvFamilyHeadName;
+    protected TextView tvFamilyHeadPhone;
+    protected LinearLayout llCareGiver;
+    protected TextView tvCareGiverTitle;
+    protected TextView tvCareGiverName;
+    protected TextView tvCareGiverPhone;
+    protected TextView dialogTitle;
 
     public static FamilyCallDialogFragment launchDialog(Activity activity, String familyBaseEntityId) {
         FamilyCallDialogFragment dialogFragment = FamilyCallDialogFragment.newInstance(familyBaseEntityId);
