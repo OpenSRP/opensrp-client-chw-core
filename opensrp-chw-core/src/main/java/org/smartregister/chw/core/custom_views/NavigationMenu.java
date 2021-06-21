@@ -290,7 +290,7 @@ public class NavigationMenu implements NavigationContract.View, SyncStatusBroadc
         if (recyclerView != null) {
 
             List<NavigationOption> navigationOptions = mPresenter.getOptions();
-            navigationAdapter = new NavigationAdnapter(navigationOptions, parentActivity, registeredActivities, this);
+            navigationAdapter = new NavigationAdapter(navigationOptions, parentActivity, registeredActivities, this);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parentActivity);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
