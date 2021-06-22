@@ -72,6 +72,16 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     }
 
     @Override
+    protected void startHivRegister() {
+        //TODO implement start FP register for HF
+    }
+
+    @Override
+    protected void startTbRegister() {
+        //TODO implement start FP register for HF
+    }
+
+    @Override
     protected void startFpChangeMethod() {
         //TODO implement start FP change method for HF
     }

@@ -93,6 +93,26 @@ public class ChwNotificationDao extends AbstractDao {
         return AbstractDao.readSingleValue(sql, mapColumnValuesToModel());
     }
 
+    public static NotificationRecord getHivTBOutcomeRecord(String notificationId, String table) {
+        String sql = String.format(
+                "/* Get details for HIV or TB Danger Signs Outcome */\n" +
+                        "SELECT ec_family_member.first_name || ' ' || ifnull(ec_family_member.last_name, ec_family_member.middle_name) as full_name,\n" +
+                        "ec_family.village_town        AS      village,\n" +
+                        table + ".problem,\n" +
+                        table + ".action_taken,\n" +
+                        table + ".test_results,\n" +
+                        table + ".visit_date\n" +
+                        "FROM " + table + "\n" +
+                        "         inner join ec_family_member on ec_family_member.base_entity_id = " + table + ".entity_id\n" +
+                        "         inner join ec_family on ec_family.base_entity_id = ec_family_member.relational_id\n" +
+                        "\n" +
+                        "WHERE ec_family_member.is_closed = '0'\n" +
+                        "  AND ec_family_member.date_removed is null\n" +
+                        "  AND " + table + ".id = '%s'\n", notificationId);
+
+        return AbstractDao.readSingleValue(sql, mapHivTbColumnValuesToModel());
+    }
+
 
     public static NotificationRecord getMalariaFollowUpRecord(String notificationId) {
         String sql = String.format(
@@ -169,6 +189,37 @@ public class ChwNotificationDao extends AbstractDao {
         };
     }
 
+    private static DataMap<NotificationRecord> mapHivTbColumnValuesToModel() {
+        return row -> {
+            NotificationRecord record = new NotificationRecord(getCursorValue(row, "base_entity_id"));
+            record.setVillage(getCursorValue(row, "village"));
+            record.setClientName(getCursorValue(row, "full_name"));
+            String careGiverName = getCursorValue(row, "cg_full_name");
+            record.setVisitDate(formatVisitDate(getCursorValue(row, "visit_date","")));
+            String diagnosis = getCursorValue(row, "diagnosis");
+            String results = getCursorValue(row, "test_results");
+            String dangerSigns = getCursorValue(row, "problem");
+            String actionTaken = getCursorValue(row, "action_taken");
+
+            if (careGiverName != null) {
+                record.setCareGiverName(careGiverName);
+            }
+            if (diagnosis != null) {
+                record.setDiagnosis(diagnosis);
+            }
+            if (results != null) {
+                record.setResults(ChwNotificationUtil.getStringFromJSONArrayString(results));
+            }
+            if (dangerSigns != null) {
+                record.setDangerSigns(ChwNotificationUtil.getStringFromJSONArrayString(dangerSigns));
+            }
+            if (actionTaken != null) {
+                record.setActionTaken(ChwNotificationUtil.getStringFromJSONArrayString(actionTaken));
+            }
+            return record;
+        };
+    }
+
     /**
      * This method is used to check whether a Notification has been marked as done or not
      *
@@ -190,6 +241,26 @@ public class ChwNotificationDao extends AbstractDao {
 
     public static String getSyncLocationId(String baseEntityId) {
         String sql = String.format("SELECT sync_location_id FROM ec_family_member WHERE base_entity_id = '%s'", baseEntityId);
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sync_location_id");
+        List<String> res = readData(sql, dataMap);
+
+        if (res == null || res.size() != 1)
+            return null;
+
+        return res.get(0);
+    }
+
+    /**
+     * This method is used to obtain the syncLocationId of the family head
+     * by using the passed familyBaseEntity Id
+     * @param familyBaseEntityId family base entity id
+     * @return family head sync location id
+     */
+    public static String getFamilyHeadSyncLocationId(String familyBaseEntityId) {
+        String sql = String.format(
+                " SELECT sync_location_id FROM ec_family f " +
+                        " INNER JOIN ec_family_member fm ON f.family_head = fm.base_entity_id " +
+                        " WHERE f.base_entity_id = '%s'", familyBaseEntityId);
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sync_location_id");
         List<String> res = readData(sql, dataMap);
 

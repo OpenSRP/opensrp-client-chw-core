@@ -76,6 +76,16 @@ public class CoreFamilyProfileActivityTestImpl extends CoreFamilyProfileActivity
     }
 
     @Override
+    protected void goToHivProfile(String baseEntityId, Activity activity) {
+        // do nothing
+    }
+
+    @Override
+    protected void goToTbProfile(String baseEntityId, Activity activity) {
+        // do nothing
+    }
+
+    @Override
     protected boolean isAncMember(String baseEntityId) {
         return false;
     }

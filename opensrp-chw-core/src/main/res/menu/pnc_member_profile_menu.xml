@@ -80,4 +80,20 @@
         android:orderInCategory="1000"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_hiv_registration"
+        android:enabled="true"
+        android:title="@string/hiv_registration"
+        android:visible="false"
+        android:orderInCategory="1100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_tb_registration"
+        android:enabled="true"
+        android:title="@string/tb_registration"
+        android:visible="false"
+        android:orderInCategory="1200"
+        app:showAsAction="never" />
+
 </menu>

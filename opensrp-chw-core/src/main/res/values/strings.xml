@@ -42,7 +42,9 @@
     <string name="menu_all_families">All Families</string>
     <string name="menu_anc_clients">ANC Clients</string>
     <string name="menu_child_clients">Child Clients</string>
-    <string name="menu_hiv_clients">HIV Clients</string>
+    <string name="menu_hiv">HIV</string>
+    <string name="menu_hiv_index_contacts">Index Contacts</string>
+    <string name="menu_tb">TB</string>
     <string name="menu_anc">ANC</string>
     <string name="menu_pnc">PNC</string>
     <string name="menu_child">Child</string>
@@ -702,6 +704,8 @@
     <string name="notification_type_family_planning">Family Planning</string>
     <string name="notification_type_not_yet_done_referrals">Referral not completed yet</string>
     <string name="perform_click_action">perform click action</string>
+    <string name="notification_type_hiv_problem_outcome">HIV Problem Outcome</string>
+    <string name="notification_type_tb_problem_outcome">TB Problem Outcome</string>
 
 
     <!--Emergency Transport-->
@@ -741,8 +745,38 @@
     <string name="thinkmd_assessment_saved">ThinkMD health assessment saved</string>
     <string name="no_thinkmd_care_plan_found">No thinkmd care plan found</string>
 
+    <string name="hiv_register">HIV Register</string>
+    <string name="routine_hiv_visit"> · Routine HIV Visit</string>
+    <string name="hiv_problem_outcome">HIV Problem Outcome</string>
+    <string name="hiv_community_followup_referral">Issue HIV community followup referral</string>
+
+    <!--    TB Register-->
+    <string name="tb_register">TB Register</string>
+    <string name="routine_tb_visit"> · Routine TB Visit</string>
+    <string name="tb_close_case">Close TB case</string>
+    <string name="tb_problem_outcome">TB Problem Outcome</string>
+    <string name="tb_community_followup_referral">Issue TB community followup referral</string>
+
+    <!-- All Clients -->
+    <string name="add_client">Add client</string>
+    <string name="client_registration">Client Registration</string>
+    <string name="update_client_registration">Update Client Details</string>
+
     <!-- LMH Last Visit Row-->
     <string name="view_vaccine_histroy">View vaccine history</string>
     <string name="see_vaccines_due_today">See vaccines due today</string>
     <string name="confirm">Confirm</string>
+
+    <!--HIV Index Clients-->
+    <string name="register_hiv_index_clients_contacts">Register HIV Index Client Contacts</string>
+    <string name="successful_index_contact_registration_toast">The  Index Contact has been successfully saved</string>
+
+    <!--Referral Titles-->
+    <string name="hiv_referral">Clinic of Treatment and Care</string>
+    <string name="tb_referral">Clinic Of Tuberculosis Treatment</string>
+    <string name="gbv_referral">Gender Based Violence Referral</string>
+    <string name="child_gbv_referral">Child Gender Based Violence Referral</string>
+
+
+
 </resources>

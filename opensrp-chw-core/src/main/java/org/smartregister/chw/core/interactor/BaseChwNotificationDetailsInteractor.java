@@ -13,6 +13,7 @@ import org.smartregister.chw.core.dao.ChwNotificationDao;
 import org.smartregister.chw.core.domain.NotificationItem;
 import org.smartregister.chw.core.domain.NotificationRecord;
 import org.smartregister.chw.core.utils.ChwNotificationUtil;
+import org.smartregister.chw.hiv.util.Constants;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.opd.utils.OpdUtils;
 
@@ -72,6 +73,10 @@ public class BaseChwNotificationDetailsInteractor implements ChwNotificationDeta
             notificationItem = getDetailsForFamilyPlanning(notificationId);
         else if (notificationType.equalsIgnoreCase(context.getString(R.string.notification_type_not_yet_done_referrals)))
             notificationItem = getDetailsForNotYetDoneReferral(notificationId);
+        else if (notificationType.equalsIgnoreCase(context.getString(R.string.hiv_problem_outcome)) ||
+                notificationType.equalsIgnoreCase(context.getString(R.string.tb_problem_outcome))
+        )
+            notificationItem = getHivTbProblemOutcomeDetails(notificationId, notificationType);
 
         presenter.onNotificationDetailsFetched(notificationItem);
     }
@@ -154,6 +159,30 @@ public class BaseChwNotificationDetailsInteractor implements ChwNotificationDeta
             }
         }
         return details;
+    }
+
+    @NotNull
+    private NotificationItem getHivTbProblemOutcomeDetails(String notificationId, String notificationType) {
+        NotificationRecord notificationRecord;
+        notificationRecord = ChwNotificationDao.getHivTBOutcomeRecord(notificationId, ChwNotificationUtil.getNotificationDetailsTable(context, notificationType));
+
+        String title = context.getString(R.string.followup_notification_title, notificationRecord.getClientName(), notificationRecord.getVisitDate());
+        List<String> details = new ArrayList<>();
+        details.add(context.getString(R.string.notification_action_taken, notificationRecord.getActionTaken()));
+        if (notificationRecord.getResults() != null && ChwNotificationUtil.getNotificationDetailsTable(context, notificationType).equals(org.smartregister.chw.hiv.util.Constants.Tables.HIV_OUTCOME)) {
+            if (notificationRecord.getResults().equalsIgnoreCase(Constants.HivStatus.POSITIVE))
+                details.add(context.getString(R.string.notification_diagnosis, context.getString(R.string.hiv_positive_status)));
+            else if (notificationRecord.getResults().equalsIgnoreCase(Constants.HivStatus.NEGATIVE))
+                details.add(context.getString(R.string.notification_diagnosis, context.getString(R.string.hiv_negative_status)));
+        } else if (notificationRecord.getResults() != null && ChwNotificationUtil.getNotificationDetailsTable(context, notificationType).equals(org.smartregister.chw.tb.util.Constants.Tables.TB_OUTCOME)) {
+            if (notificationRecord.getResults().equalsIgnoreCase(org.smartregister.chw.tb.util.Constants.TbStatus.POSITIVE))
+                details.add(context.getString(R.string.notification_diagnosis, context.getString(R.string.tb_positive_status)));
+            else if (notificationRecord.getResults().equalsIgnoreCase(org.smartregister.chw.tb.util.Constants.TbStatus.NEGATIVE))
+                details.add(context.getString(R.string.notification_diagnosis, context.getString(R.string.tb_negative_status)));
+        }
+
+        details.add(context.getString(R.string.notification_village, notificationRecord.getVillage()));
+        return new NotificationItem(title, details);
     }
 
     /**

@@ -10,7 +10,9 @@ import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.RegisterAlert;
 import org.smartregister.chw.core.rule.AncVisitAlertRule;
 import org.smartregister.chw.core.rule.FpAlertRule;
+import org.smartregister.chw.core.rule.HivFollowupRule;
 import org.smartregister.chw.core.rule.PncVisitAlertRule;
+import org.smartregister.chw.core.rule.TbFollowupRule;
 
 import java.util.Date;
 
@@ -48,5 +50,17 @@ public class HomeVisitUtil {
         FpAlertRule fpAlertRule = new FpAlertRule(fpDate, lastVisitDate, pillCycles, fpMethod);
         CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(fpAlertRule, rules);
         return fpAlertRule;
+    }
+
+    public static TbFollowupRule getTbVisitStatus( Date lastVisitDate, Date tbDate) {
+        TbFollowupRule tbFollowupRule = new TbFollowupRule(tbDate, lastVisitDate);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getTbRule(tbFollowupRule, CoreConstants.RULE_FILE.TB_FOLLOW_UP_VISIT);
+        return tbFollowupRule;
+    }
+
+    public static HivFollowupRule getHivVisitStatus(Date lastVisitDate, Date tbDate) {
+        HivFollowupRule hivFollowupRule = new HivFollowupRule(tbDate, lastVisitDate);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getHivRule(hivFollowupRule, CoreConstants.RULE_FILE.HIV_FOLLOW_UP_VISIT);
+        return hivFollowupRule;
     }
 }

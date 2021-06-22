@@ -33,6 +33,16 @@ public class CoreFamilyOtherMemberProfileActivityImpl extends CoreFamilyOtherMem
     }
 
     @Override
+    protected void startHivRegister() {
+        // do nothing
+    }
+
+    @Override
+    protected void startTbRegister() {
+        // do nothing
+    }
+
+    @Override
     public void startMalariaFollowUpVisit() {
         // do nothing
     }

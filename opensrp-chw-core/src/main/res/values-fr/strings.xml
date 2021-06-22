@@ -41,11 +41,12 @@
     <string name="menu_all_families">Ménages</string>
     <string name="menu_anc_clients">Clients CPN</string>
     <string name="menu_child_clients">Enfants Clients</string>
-    <string name="menu_hiv_clients">Clients VIH</string>
+    <string name="menu_hiv">VIH</string>
     <string name="menu_anc">Clients CPN</string>
     <string name="menu_pnc">Clients CPoN</string>
     <string name="menu_child">CH</string>
     <string name="menu_family_planning">Planning Familiale</string>
+    <string name="menu_hiv_index_contacts">HIV indexer les clients</string>
 
     <!-- Family Register -->
     <string name="menu_malaria">Paludisme</string>
@@ -437,4 +438,13 @@
 
     <!---All Clients Register -->
     <string name="return_to_all_client">Revenir à tous les clients</string>
+    <string name="menu_tb">Tuberculose</string>
+
+    <!--    HIV Register-->
+    <string name="hiv_register">Registre du VIH</string>
+    <string name="routine_hiv_visit"> · Visite de routine du VIH</string>
+
+    <!--    TB Register-->
+    <string name="tb_register">Registre TB</string>
+    <string name="routine_tb_visit"> · Visite de routine en tuberculose</string>
 </resources>

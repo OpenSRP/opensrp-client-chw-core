@@ -250,6 +250,23 @@ dependencies {
     }
 
     implementation "id.zelory:compressor:2.1.1"
+    api('org.smartregister:opensrp-client-chw-hiv:1.0.1-SNAPSHOT@aar') {
+        transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
+        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
+        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+
+    api('org.smartregister:opensrp-client-chw-tb:1.0.0-SNAPSHOT@aar') {
+        transitive = true
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
+        exclude group: 'org.smartregister', module: 'opensrp-client-native-form'
+        exclude group: 'org.smartregister', module: 'opensrp-client-configurable-views'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.nerdstone', module: 'neat-form-core'
+    }
+
     api 'com.google.guava:guava:20.0'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     // Because RxAndroid releases are few and far between, it is recommended you also

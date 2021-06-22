@@ -33,7 +33,9 @@ import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreChildUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.fp.dao.FpDao;
+import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.pnc.activity.BasePncMemberProfileActivity;
+import org.smartregister.chw.tb.dao.TbDao;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.FetchStatus;
@@ -401,6 +403,10 @@ public abstract class CoreFamilyProfileActivity extends BaseFamilyProfileActivit
                 gotToPncProfileActivity(commonPersonObjectClient, fragmentArguments);
             } else if (FpDao.isRegisteredForFp(commonPersonObjectClient.entityId())) {
                 goToFpProfile(commonPersonObjectClient.entityId(), activity);
+            }else if (HivDao.isRegisteredForHiv(commonPersonObjectClient.entityId())) {
+                goToHivProfile(commonPersonObjectClient.entityId(), activity);
+            }else if (TbDao.isRegisteredForTb(commonPersonObjectClient.entityId())) {
+                goToTbProfile(commonPersonObjectClient.entityId(), activity);
             } else {
                 goToOtherMemberProfileActivity(commonPersonObjectClient, fragmentArguments);
             }
@@ -419,6 +425,10 @@ public abstract class CoreFamilyProfileActivity extends BaseFamilyProfileActivit
     protected abstract Class<? extends BasePncMemberProfileActivity> getPncMemberProfileActivityClass();
 
     protected abstract void goToFpProfile(String baseEntityId, Activity activity);
+
+    protected abstract void goToHivProfile(String baseEntityId, Activity activity);
+
+    protected abstract void goToTbProfile(String baseEntityId, Activity activity);
 
     protected abstract boolean isAncMember(String baseEntityId);
 

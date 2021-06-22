@@ -21,7 +21,6 @@ public class CorePncMemberProfileActivityImpl extends CorePncMemberProfileActivi
         return Mockito.mock(CorePncMemberProfileInteractor.class);
     }
 
-
     @Override
     public void registerPresenter() {
         this.presenter = Mockito.mock(CorePncMemberProfilePresenter.class);
@@ -63,6 +62,15 @@ public class CorePncMemberProfileActivityImpl extends CorePncMemberProfileActivi
     }
 
     @Override
+    protected void startHivRegister() {
+        // do nothing
+    }
+
+    @Override
+    protected void startTbRegister() {
+        // do nothing
+    }
+
     public void startHfMalariaFollowupForm() {
         // do nothing
     }

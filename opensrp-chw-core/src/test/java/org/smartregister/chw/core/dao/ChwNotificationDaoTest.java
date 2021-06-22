@@ -102,4 +102,35 @@ public class ChwNotificationDaoTest extends ChwNotificationDao {
         boolean markedAsDone = ChwNotificationDao.isMarkedAsDone(context, "123456", "Sick Child");
         Assert.assertFalse(markedAsDone);
     }
+
+    @Test
+    public void getHivTBOutcomeRecord() {
+        Mockito.doReturn(database).when(repository).getReadableDatabase();
+        MatrixCursor matrixCursor = new MatrixCursor(new String[]{"full_name", "village","problem", "action_taken", "test_results", "visit_date"});
+        matrixCursor.addRow(new Object[]{"General Mwathethe", "Matuga", "Coughing alot","Referred", "TB positive", "2020-05-21 17:16:31"});
+        Mockito.doReturn(matrixCursor).when(database).rawQuery(Mockito.any(), Mockito.any());
+        NotificationRecord tbOutcomeNotificationRecord = ChwNotificationDao.getHivTBOutcomeRecord("123456","ec_hiv_outcome");
+        Mockito.verify(database).rawQuery(Mockito.anyString(), Mockito.any());
+        Assert.assertNotNull(tbOutcomeNotificationRecord);
+        Assert.assertEquals(tbOutcomeNotificationRecord.getActionTaken(), "Referred");
+        Assert.assertEquals(tbOutcomeNotificationRecord.getVisitDate(), "21-05-2020");
+        Assert.assertEquals(tbOutcomeNotificationRecord.getResults(), "TB positive");
+        Assert.assertEquals(tbOutcomeNotificationRecord.getClientName(), "General Mwathethe");
+        Assert.assertEquals(tbOutcomeNotificationRecord.getVillage(), "Matuga");
+    }
+
+    @Test
+    public void getNotYetDoneReferrals() {
+        Mockito.doReturn(database).when(repository).getReadableDatabase();
+        MatrixCursor matrixCursor = new MatrixCursor(new String[]{"full_name", "dob","village","notification_date", "phone_number", "base_entity_id"});
+        matrixCursor.addRow(new Object[]{"General Mwathethe", "1990-05-21 00:00:00","Matuga", "2020-05-21 17:16:31","0798000000", "123456"});
+        Mockito.doReturn(matrixCursor).when(database).rawQuery(Mockito.any(), Mockito.any());
+        NotificationRecord notYetDoneReferralNotificationRecord = ChwNotificationDao.getNotYetDoneReferral("123456");
+        Mockito.verify(database).rawQuery(Mockito.anyString(), Mockito.any());
+        Assert.assertNotNull(notYetDoneReferralNotificationRecord);
+        Assert.assertEquals(notYetDoneReferralNotificationRecord.getClientName(), "General Mwathethe");
+        Assert.assertEquals(notYetDoneReferralNotificationRecord.getVillage(), "Matuga");
+        Assert.assertEquals(notYetDoneReferralNotificationRecord.getClientDateOfBirth(), "1990-05-21 00:00:00");
+        Assert.assertEquals(notYetDoneReferralNotificationRecord.getNotificationDate(), "2020-05-21 17:16:31");
+    }
 }

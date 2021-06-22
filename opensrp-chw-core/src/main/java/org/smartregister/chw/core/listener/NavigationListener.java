@@ -66,6 +66,15 @@ public class NavigationListener implements View.OnClickListener {
                 case CoreConstants.DrawerMenu.UPDATES:
                     startRegisterActivity(getActivity(CoreConstants.REGISTERED_ACTIVITIES.UPDATES_REGISTER_ACTIVITY));
                     break;
+                case CoreConstants.DrawerMenu.HIV_CLIENTS:
+                    startRegisterActivity(getActivity(CoreConstants.REGISTERED_ACTIVITIES.HIV_REGISTER_ACTIVITY));
+                    break;
+                case CoreConstants.DrawerMenu.HIV_INDEX_CLIENTS:
+                    startRegisterActivity(getActivity(CoreConstants.REGISTERED_ACTIVITIES.HIV_INDEX_REGISTER_ACTIVITY));
+                    break;
+                case CoreConstants.DrawerMenu.TB_CLIENTS:
+                    startRegisterActivity(getActivity(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY));
+                    break;
                 default:
                     Utils.showShortToast(activity.getApplicationContext(), "Unspecified navigation action");
                     break;

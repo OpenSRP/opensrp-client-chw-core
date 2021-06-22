@@ -15,10 +15,12 @@ import timber.log.Timber;
 
 import static org.smartregister.chw.core.utils.QueryConstant.ANC_DANGER_SIGNS_OUTCOME_COUNT_QUERY;
 import static org.smartregister.chw.core.utils.QueryConstant.FAMILY_PLANNING_UPDATE_COUNT_QUERY;
+import static org.smartregister.chw.core.utils.QueryConstant.HIV_OUTCOME_COUNT_QUERY;
 import static org.smartregister.chw.core.utils.QueryConstant.MALARIA_HF_FOLLOW_UP_COUNT_QUERY;
 import static org.smartregister.chw.core.utils.QueryConstant.NOT_YET_DONE_REFERRAL_COUNT_QUERY;
 import static org.smartregister.chw.core.utils.QueryConstant.PNC_DANGER_SIGNS_OUTCOME_COUNT_QUERY;
 import static org.smartregister.chw.core.utils.QueryConstant.SICK_CHILD_FOLLOW_UP_COUNT_QUERY;
+import static org.smartregister.chw.core.utils.QueryConstant.TB_OUTCOME_COUNT_QUERY;
 
 public class NavigationInteractor implements NavigationContract.Interactor {
 
@@ -187,6 +189,13 @@ public class NavigationInteractor implements NavigationContract.Interactor {
                         "             UNION ALL\n" +
                         "             SELECT ec_family_planning.base_entity_id AS base_entity_id\n" +
                         "             FROM ec_family_planning\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_tb_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_tb_register\n" +
+                        "             WHERE ec_tb_register.tb_case_closure_date is null\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_hiv_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_hiv_register\n" +
                         "         )\n" +
                         "         UNION ALL\n" +
                         "/*COUNT INDEPENDENT MEMBERS*/\n" +
@@ -210,6 +219,13 @@ public class NavigationInteractor implements NavigationContract.Interactor {
                         "             UNION ALL\n" +
                         "             SELECT ec_family_planning.base_entity_id AS base_entity_id\n" +
                         "             FROM ec_family_planning\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_tb_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_tb_register\n" +
+                        "             WHERE ec_tb_register.tb_case_closure_date is null\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_hiv_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_hiv_register\n" +
                         "         )\n" +
                         "         UNION ALL\n" +
                         "/**COUNT REGISTERED MALARIA CLIENTS*/\n" +
@@ -228,6 +244,58 @@ public class NavigationInteractor implements NavigationContract.Interactor {
                         "             UNION ALL\n" +
                         "             SELECT ec_child.base_entity_id AS base_entity_id\n" +
                         "             FROM ec_child\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_family_planning.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_family_planning\n" +
+                        "         )\n" +
+                        "         UNION ALL\n" +
+                        "/**COUNT REGISTERED TB CLIENTS*/\n" +
+                        "         SELECT COUNT(*) AS c\n" +
+                        "         FROM ec_family_member\n" +
+                        "                  inner join ec_family on ec_family.base_entity_id = ec_family_member.relational_id\n" +
+                        "                  inner join ec_tb_register\n" +
+                        "                             on ec_family_member.base_entity_id = ec_tb_register.base_entity_id\n" +
+                        "         where ec_family_member.date_removed is null\n" +
+                        "           AND ec_family_member.base_entity_id NOT IN (\n" +
+                        "             SELECT ec_anc_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_anc_register\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_pregnancy_outcome.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_pregnancy_outcome\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_child.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_child\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_malaria_confirmation.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_malaria_confirmation\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_family_planning.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_family_planning\n" +
+                        "         )\n" +
+                        "         UNION ALL\n" +
+                        "/**COUNT REGISTERED HIV CLIENTS*/\n" +
+                        "         SELECT COUNT(*) AS c\n" +
+                        "         FROM ec_family_member\n" +
+                        "                  inner join ec_family on ec_family.base_entity_id = ec_family_member.relational_id\n" +
+                        "                  inner join ec_hiv_register\n" +
+                        "                             on ec_family_member.base_entity_id = ec_hiv_register.base_entity_id\n" +
+                        "         where ec_family_member.date_removed is null\n" +
+                        "           AND ec_family_member.base_entity_id NOT IN (\n" +
+                        "             SELECT ec_anc_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_anc_register\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_pregnancy_outcome.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_pregnancy_outcome\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_child.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_child\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_malaria_confirmation.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_malaria_confirmation\n" +
+                        "             UNION ALL\n" +
+                        "             SELECT ec_tb_register.base_entity_id AS base_entity_id\n" +
+                        "             FROM ec_tb_register\n" +
+                        "             WHERE ec_tb_register.tb_case_closure_date is null\n" +
                         "             UNION ALL\n" +
                         "             SELECT ec_family_planning.base_entity_id AS base_entity_id\n" +
                         "             FROM ec_family_planning\n" +
@@ -265,11 +333,62 @@ public class NavigationInteractor implements NavigationContract.Interactor {
 
             case CoreConstants.TABLE_NAME.NOTIFICATION_UPDATE:
                 String referralNotificationQuery =
-                        String.format("SELECT SUM(c) FROM (\n %s \nUNION ALL\n %s \nUNION ALL\n %s \nUNION ALL\n %s \nUNION ALL\n %s \nUNION ALL %s)",
+                        String.format("SELECT SUM(c) FROM (\n %s \nUNION ALL\n %s \nUNION ALL\n %s \nUNION ALL\n %s \nUNION ALL\n %s \nUNION ALL %s \nUNION ALL %s \nUNION ALL %s)",
                                 SICK_CHILD_FOLLOW_UP_COUNT_QUERY, ANC_DANGER_SIGNS_OUTCOME_COUNT_QUERY,
                                 PNC_DANGER_SIGNS_OUTCOME_COUNT_QUERY, FAMILY_PLANNING_UPDATE_COUNT_QUERY,
-                                MALARIA_HF_FOLLOW_UP_COUNT_QUERY, NOT_YET_DONE_REFERRAL_COUNT_QUERY);
+                                MALARIA_HF_FOLLOW_UP_COUNT_QUERY, HIV_OUTCOME_COUNT_QUERY,
+                                TB_OUTCOME_COUNT_QUERY, NOT_YET_DONE_REFERRAL_COUNT_QUERY);
                 return NavigationDao.getQueryCount(referralNotificationQuery);
+
+            case org.smartregister.chw.hiv.util.Constants.Tables.HIV:
+                String sqlHiv =
+                        "SELECT SUM(c)\n" +
+                                "FROM (\n" +
+                                "              select count(*) as c " +
+                                "              from " + org.smartregister.chw.hiv.util.Constants.Tables.HIV + " p " +
+                                "              inner join ec_family_member m on p.base_entity_id = m.base_entity_id COLLATE NOCASE " +
+                                "              inner join ec_family f on f.base_entity_id = m.relational_id COLLATE NOCASE " +
+                                "              where m.date_removed is null and p.is_closed = '0' and " +
+                                "              (p.client_hiv_status_after_testing = 'Positive' OR p.client_hiv_status_after_testing IS NULL) " +
+                                "         UNION ALL\n" +
+                                "              select count(*) as c " +
+                                "              from " + org.smartregister.chw.hiv.util.Constants.Tables.HIV_COMMUNITY_FOLLOWUP + " p " +
+                                "              inner join ec_family_member m on p.entity_id = m.base_entity_id COLLATE NOCASE " +
+                                "              inner join ec_family f on f.base_entity_id = m.relational_id COLLATE NOCASE " +
+                                "              where m.date_removed is null and p.is_closed = '0' AND " +
+                                "              p.base_entity_id NOT IN (SELECT community_referral_form_id FROM " + org.smartregister.chw.hiv.util.Constants.Tables.HIV_COMMUNITY_FEEDBACK + " ))";
+                return NavigationDao.getQueryCount(sqlHiv);
+
+            case org.smartregister.chw.hiv.util.Constants.Tables.HIV_INDEX:
+                String sqlIndex =
+                        "SELECT count(*) " +
+                                "              from " + org.smartregister.chw.hiv.util.Constants.Tables.HIV_INDEX + " p " +
+                                "              inner join ec_family_member m on p.base_entity_id = m.base_entity_id COLLATE NOCASE " +
+                                "              inner join ec_family f on f.base_entity_id = m.relational_id COLLATE NOCASE " +
+                                "              where m.date_removed is null and p.is_closed = '0' and " +
+                                "              (p.client_hiv_status_after_testing = 'Positive' OR p.client_hiv_status_after_testing IS NULL) ";
+                return NavigationDao.getQueryCount(sqlIndex);
+
+            case org.smartregister.chw.tb.util.Constants.Tables.TB:
+                String sqlTb =
+                        "SELECT SUM(c)\n" +
+                                "FROM (\n" +
+                                "              select count(*) as c " +
+                                "              from " + org.smartregister.chw.tb.util.Constants.Tables.TB + " p " +
+                                "              inner join ec_family_member m on p.base_entity_id = m.base_entity_id COLLATE NOCASE " +
+                                "              inner join ec_family f on f.base_entity_id = m.relational_id COLLATE NOCASE " +
+                                "              where m.date_removed is null and p.is_closed = '0' and " +
+                                "              p.tb_case_closure_date IS NULL and " +
+                                "              (p.client_tb_status_after_testing = 'Positive' OR p.client_tb_status_after_testing IS NULL) " +
+                                "         UNION ALL\n" +
+                                "              select count(*) as c " +
+                                "              from " + org.smartregister.chw.tb.util.Constants.Tables.TB_COMMUNITY_FOLLOWUP + " p " +
+                                "              inner join ec_family_member m on p.entity_id = m.base_entity_id COLLATE NOCASE " +
+                                "              inner join ec_family f on f.base_entity_id = m.relational_id COLLATE NOCASE " +
+                                "              where m.date_removed is null and p.is_closed = '0' AND " +
+                                "              p.base_entity_id NOT IN (SELECT community_referral_form_id FROM " + org.smartregister.chw.tb.util.Constants.Tables.TB_COMMUNITY_FEEDBACK + " ))";
+
+                return NavigationDao.getQueryCount(sqlTb);
 
             default:
                 return NavigationDao.getTableCount(tableName);

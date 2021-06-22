@@ -24,8 +24,20 @@ public class ChwNotificationUtilTest {
         Context context = RuntimeEnvironment.application;
         String sickChildTable = "ec_sick_child_followup";
         String familyPlanningTable = "ec_family_planning_update";
+        String pncDangerSignsOutcomeTable = "ec_pnc_danger_signs_outcome";
+        String ancDangerSignsOutcomeTable = "ec_anc_danger_signs_outcome";
+        String malariaFollowupHfTable = "ec_malaria_followup_hf";
+        String hivOutcomeTable = "ec_hiv_outcome";
+        String tbOutcomeTable = "ec_tb_outcome";
+
+
         Assert.assertEquals(sickChildTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.notification_type_sick_child_follow_up)));
         Assert.assertEquals(familyPlanningTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.notification_type_family_planning)));
+        Assert.assertEquals(pncDangerSignsOutcomeTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.notification_type_pnc_danger_signs)));
+        Assert.assertEquals(ancDangerSignsOutcomeTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.notification_type_anc_danger_signs)));
+        Assert.assertEquals(malariaFollowupHfTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.notification_type_malaria_follow_up)));
+        Assert.assertEquals(hivOutcomeTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.hiv_problem_outcome)));
+        Assert.assertEquals(tbOutcomeTable, ChwNotificationUtil.getNotificationDetailsTable(context, context.getString(R.string.tb_problem_outcome)));
     }
 
     @Test

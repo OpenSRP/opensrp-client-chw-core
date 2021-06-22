@@ -40,11 +40,13 @@
     <string name="menu_all_families">Kaya Zote</string>
     <string name="menu_anc_clients">Wajawazito</string>
     <string name="menu_child_clients">Watoto</string>
-    <string name="menu_hiv_clients">Wateja wenye VVU</string>
+    <string name="menu_hiv">VVU/Ukimwi</string>
+    <string name="menu_tb">Kifua Kikuu</string>
     <string name="menu_anc">Wajawazito</string>
     <string name="menu_pnc">Baada ya kujifungua</string>
     <string name="menu_child">Mtoto</string>
     <string name="menu_family_planning">Uzazi wa Mpango</string>
+    <string name="menu_hiv_index_contacts">Washirika wa Ngono/Wakujidunga/Watoto wa wateja wenye VVU/UKIMWI</string>
 
     <!-- Family Register -->
     <string name="menu_malaria">Malaria</string>
@@ -732,4 +734,27 @@
     <string name="view_vaccine_histroy">Angalia historia ya chanjo</string>
     <string name="see_vaccines_due_today">Angalia chanjo zinazopaswa kutolewa leo</string>
     <string name="confirm">Thibitisha</string>
+
+    <!--    HIV Register-->
+    <string name="hiv_register">Orodha ya wateja wenye VVU</string>
+    <string name="routine_hiv_visit"> · Tembeleo la mteja mwenye VVU</string>
+
+    <!--    TB Register-->
+    <string name="tb_register">Orodha ya wateja wenye Kifua Kikuu</string>
+    <string name="routine_tb_visit"> · · Tembeleo la mteja mwenye Kifua Kikuu</string>
+
+    <!-- All Clients -->
+    <string name="add_client">Sajili Mteja</string>
+
+    <!--HIV Index Clients-->
+    <string name="register_hiv_index_clients_contacts">Sajili mshirika wa ngono/wakujidunga na /mtoto wa mteja</string>
+    <string name="successful_index_contact_registration_toast">Mshirika wa ngono/wakujidunga na /mtoto amehifadhiwa</string>
+
+    <!--Referral Titles-->
+    <string name="hiv_referral">Kliniki ya Tiba na matunzo (CTC)</string>
+    <string name="tb_referral">Kliniki ya kutibu kifua kikuu</string>
+    <string name="gbv_referral">Huduma ya kuzui ukatili wa kijinsia (dawati la jinsia)</string>
+    <string name="child_gbv_referral">Huduma ya kuzui ukatili wa kijinsia (dawati la jinsia)</string>
+
 </resources>
+

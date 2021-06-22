@@ -3,6 +3,7 @@ package org.smartregister.chw.core.utils;
 import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.utils.FormUtils;
@@ -213,7 +214,8 @@ public class CoreReferralUtils {
         return focus;
     }
 
-    private static String getReferralProblems(String jsonString) {
+    @VisibleForTesting
+    static String getReferralProblems(String jsonString) {
         String referralProblems = "";
         List<String> formValues = new ArrayList<>();
         try {

@@ -86,6 +86,8 @@ public class CoreConstants {
         String FAMILY_KIT = "FAMILY_KIT";
         String MALARIA_VISIT = "MALARIA_VISIT";
         String FP_VISIT = "FP_VISIT";
+        String TB_VISIT = "TB_VISIT";
+        String HIV_VISIT = "HIV_VISIT";
         String ROUTINE_HOUSEHOLD_VISIT = "ROUTINE_HOUSEHOLD_VISIT";
     }
 
@@ -168,6 +170,8 @@ public class CoreConstants {
         public static final String MALARIA_NOTIFICATION_DISMISSAL = "Malaria Notification Dismissal";
         public static final String SICK_CHILD_NOTIFICATION_DISMISSAL = "Sick Child Notification Dismissal";
         public static final String FAMILY_PLANNING_NOTIFICATION_DISMISSAL = "Family Planning Notification Dismissal";
+        public static final String HIV_NOTIFICATION_DISMISSAL = "HIV Notification Dismissal";
+        public static final String TB_NOTIFICATION_DISMISSAL = "TB Notification Dismissal";
 
         public static final String ROUTINE_HOUSEHOLD_VISIT = "Routine Household Visit";
         public static final String SICK_CHILD = "Sick Child";
@@ -181,6 +185,9 @@ public class CoreConstants {
         public static final String MALARIA_FOLLOW_UP_HF = "Malaria Follow-up HF";
         public static final String FAMILY_PLANNING_UPDATE = "Family Planning Update";
         public static final String REMOVE_COMMUNITY_RESPONDER = "Remove Community Responder";
+        public static final String CLOSE_HIV_FEEDBACK = "Close Hiv Feedback";
+        public static final String CLOSE_TB_FEEDBACK = "Close Tb Feedback";
+        public static final String REGISTER_HIV_INDEX = "Register Hiv Index";
     }
 
     public static final class EncounterType {
@@ -235,6 +242,25 @@ public class CoreConstants {
         private static final String MALE_FAMILY_PLANNING_CHANGE_METHOD_FORM = "male_family_planning_change_method";
         private static final String PNC_DANGER_SIGNS_OUTCOME_FORM = "pnc_danger_signs_outcome";
         private static final String MALARIA_FOLLOW_UP_HF_FORM = "malaria_follow_up_hf";
+        private static final String HIV_REGISTRATION = "hiv_registration";
+        private static final String HIV_FOLLOWUP_VISIT = "hiv_followup_visit";
+        private static final String HIV_OUTCOME = "hiv_outcome";
+        private static final String HIV_COMMUNITY_FOLLOWUP_REFERRAL = "hiv_community_followup_referral";
+        private static final String TB_OUTCOME = "tb_outcome";
+        private static final String TB_COMMUNITY_FOLLOWUP_REFERRAL = "tb_community_followup_referral";
+        private static final String TB_REGISTRATION = "tb_registration";
+        private static final String TB_FOLLOWUP_VISIT = "tb_followup_visit";
+        private static final String TB_CASE_CLOSURE = "tb_case_closure";
+        private static final String HIV_COMMUNITY_FOLLOW_FEEDBACK = "hiv_community_followup_feedback";
+        private static final String TB_COMMUNITY_FOLLOW_FEEDBACK = "tb_community_followup_feedback";
+        private static final String ALL_CLIENT_REGISTRATION_FORM = "all_clients_registration_form";
+        private static final String ALL_CLIENT_UPDATE_REGISTRATION_INFO_FORM = "all_clients_update_registration_info_form";
+
+        private static final String HIV_INDEX_CLIENTS_REGISTRATION_FORM = "hiv_index_clients_registration_form";
+
+
+
+
         public static AssetManager assetManager;
         public static Locale locale;
 
@@ -407,6 +433,62 @@ public class CoreConstants {
 
         public static String getMalariaFollowUpHfForm() {
             return Utils.getLocalForm(MALARIA_FOLLOW_UP_HF_FORM, locale, assetManager);
+        }
+
+        public static String getHivRegistration() {
+            return HIV_REGISTRATION;
+        }
+
+        public static String getTbRegistration() {
+            return TB_REGISTRATION;
+        }
+
+        public static String getHivFollowupVisit() {
+            return HIV_FOLLOWUP_VISIT;
+        }
+
+        public static String getHivOutcome() {
+            return HIV_OUTCOME;
+        }
+
+        public static String getHivCommunityFollowupReferral() {
+            return HIV_COMMUNITY_FOLLOWUP_REFERRAL;
+        }
+
+        public static String getTbOutcome() {
+            return TB_OUTCOME;
+        }
+
+        public static String getTbCommunityFollowupReferral() {
+            return TB_COMMUNITY_FOLLOWUP_REFERRAL;
+        }
+
+        public static String getTbFollowupVisit() {
+            return TB_FOLLOWUP_VISIT;
+        }
+
+        public static String getTbCaseClosure() {
+            return TB_CASE_CLOSURE;
+        }
+
+        public static String getHivCommunityFollowFeedback() {
+            return HIV_COMMUNITY_FOLLOW_FEEDBACK;
+        }
+
+        public static String getAllClientRegistrationForm() {
+            return ALL_CLIENT_REGISTRATION_FORM;
+        }
+
+        public static String getAllClientUpdateRegistrationInfoForm() {
+            return ALL_CLIENT_UPDATE_REGISTRATION_INFO_FORM;
+        }
+
+        public static String getHivIndexClientsRegistrationForm() {
+            return HIV_INDEX_CLIENTS_REGISTRATION_FORM;
+        }
+
+        public static String getTbCommunityFollowFeedback() {
+            return TB_COMMUNITY_FOLLOW_FEEDBACK;
         }
 
         public static class CHILD_HOME_VISIT {
@@ -665,6 +747,7 @@ public class CoreConstants {
         public static final String PNC_REFERRAL = "ec_pnc_referral";
         public static final String FP_REFERRAL = "ec_fp_referral";
         public static final String CLOSE_REFERRAL = "ec_close_referral";
+        public static final String HIV_INDEX = "ec_hiv_index";
         public static final String NOT_YET_DONE_REFERRAL = "ec_not_yet_done_referral";
         public static final String SCHEDULE_SERVICE = "schedule_service";
         public static final String MALARIA_REFERRAL = "ec_malaria_referral";
@@ -680,6 +763,8 @@ public class CoreConstants {
         public static final String FAMILY_PLANNING_UPDATE = "ec_family_planning_update";
         public static final String NOTIFICATION_UPDATE = "notification_update";
         public static final String INDEPENDENT_CLIENT = "ec_independent_client";
+        public static final String HIV_MEMBER = "ec_hiv_register";
+        public static final String TB_MEMBER = "ec_tb_register";
     }
 
     public static final class INTENT_KEY {
@@ -716,7 +801,9 @@ public class CoreConstants {
         public static final String ANC_CLIENTS = "ANC Clients";
         public static final String CHILD_CLIENTS = "Child Clients";
         public static final String CHILD = "Child";
-        public static final String HIV_CLIENTS = "Hiv Clients";
+        public static final String HIV_CLIENTS = "HIV Clients";
+        public static final String HIV_INDEX_CLIENTS = "HIV Index Clients";
+        public static final String TB_CLIENTS = "TB Clients";
         public static final String ANC = "ANC";
         public static final String LD = "L&D";
         public static final String PNC = "PNC";
@@ -740,6 +827,8 @@ public class CoreConstants {
         public static final String FP_INJECTION_DUE = "fp-injection-due-rule.yml";
         public static final String FP_FEMALE_STERILIZATION = "fp-female-sterilization-rule.yml";
         public static final String FP_IUCD = "fp-iucd-rule.yml";
+        public static final String TB_FOLLOW_UP_VISIT = "tb-followup-rules.yml";
+        public static final String HIV_FOLLOW_UP_VISIT = "hiv-followup-rules.yml";
     }
 
     public static class PROFILE_CHANGE_ACTION {
@@ -882,6 +971,7 @@ public class CoreConstants {
             public static final String REFERRAL_TASK_PREVIOUS_BUSINESS_STATUS = "referral_task_previous_business_status";
             public static final String NOTIFICATION_ID = "notification_id";
             public static final String DATE_NOTIFICATION_MARKED_AS_DONE = "date_marked_as_done";
+            public static final String INDEX_CLIENT_BASE_ENTITY_ID = "index_client_base_entity_id";
         }
     }
 
@@ -952,6 +1042,9 @@ public class CoreConstants {
         public static final String FP_REGISTER_ACTIVITY = "FP_REGISTER_ACTIVITY";
         public static final String ALL_CLIENTS_REGISTERED_ACTIVITY = "ALL_CLIENTS";
         public static final String UPDATES_REGISTER_ACTIVITY = "UPDATES_REGISTER_ACTIVITY";
+        public static final String HIV_REGISTER_ACTIVITY = "HIV_REGISTER_ACTIVITY";
+        public static final String HIV_INDEX_REGISTER_ACTIVITY = "HIV_INDEX_REGISTER_ACTIVITY";
+        public static final String TB_REGISTER_ACTIVITY = "TB_REGISTER_ACTIVITY";
     }
 
     public static final class BUSINESS_STATUS {
@@ -979,6 +1072,8 @@ public class CoreConstants {
         public static final String PNC = "PNC";
         public static final String MALARIA = "Malaria";
         public static final String FAMILY_PLANNING = "Family Planning";
+        public static final String TB = "TB";
+        public static final String HIV = "HIV";
         public static final String OTHER = "Other";
         public static final String INDEPENDENT = "Independent";
     }
@@ -1003,8 +1098,8 @@ public class CoreConstants {
         public static final String PROVIDER_TYPE = "in_app_providers";
     }
 
-    public static class AncHealthFacilityVisitUtil{
-        public static final String TETANUS_TOXOID  = "Tetanus toxoid (TT)";
+    public static class AncHealthFacilityVisitUtil {
+        public static final String TETANUS_TOXOID = "Tetanus toxoid (TT)";
     }
 
 

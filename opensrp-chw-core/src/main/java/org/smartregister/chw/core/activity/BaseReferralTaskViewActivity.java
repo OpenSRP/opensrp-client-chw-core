@@ -166,7 +166,7 @@ public abstract class BaseReferralTaskViewActivity extends SecuredActivity {
         }
     }
 
-    private void setClientName() {
+    protected void setClientName() {
         String firstName = Utils.getValue(getPersonObjectClient().getColumnmaps(), FIRST_NAME, true);
         String lastName = Utils.getValue(getPersonObjectClient().getColumnmaps(), LAST_NAME, true);
         String middleName = Utils.getValue(getPersonObjectClient().getColumnmaps(), MIDDLE_NAME, true);
