@@ -151,10 +151,10 @@ public abstract class CoreFamilyChangeContractInteractor implements FamilyChange
         Utils.context().allSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
     }
 
-    private Triple<List<FamilyMember>, String, String> processFamily(String familyID) {
+    private Triple<List<FamilyMember>, String, String>  processFamily(String familyID) {
         Triple<List<FamilyMember>, String, String> res;
 
-        CommonRepository commonRepository = Utils.context().commonrepository(Utils.metadata().familyRegister.tableName);
+         CommonRepository commonRepository = Utils.context().commonrepository(Utils.metadata().familyRegister.tableName);
 
         final CommonPersonObject personObject = commonRepository.findByBaseEntityId(familyID);
         final CommonPersonObjectClient client =
