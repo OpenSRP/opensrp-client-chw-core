@@ -33,12 +33,22 @@ public class FamilyCallDialogInteractor implements FamilyCallDialogContract.Inte
         this.familyBaseEntityId = familyBaseEntityId;
     }
 
+    @VisibleForTesting
+    String familyRegisterTableName(){
+        return Utils.metadata().familyRegister.tableName;
+    }
+
+    @VisibleForTesting
+    String familyMemberTableName(){
+        return Utils.metadata().familyMemberRegister.tableName;
+    }
+
     @Override
     public void getHeadOfFamily(final FamilyCallDialogContract.Presenter presenter, final Context context) {
 
         Runnable runnable = () -> {
 
-            final CommonPersonObject personObject = getCommonRepository(Utils.metadata().familyRegister.tableName).findByBaseEntityId(familyBaseEntityId);
+            final CommonPersonObject personObject = getCommonRepository(familyRegisterTableName()).findByBaseEntityId(familyBaseEntityId);
             final CommonPersonObjectClient client = new CommonPersonObjectClient(personObject.getCaseId(), personObject.getDetails(), "");
             client.setColumnmaps(personObject.getColumnmaps());
 
@@ -76,7 +86,7 @@ public class FamilyCallDialogInteractor implements FamilyCallDialogContract.Inte
 
         String baseID = (isHead && StringUtils.isNotBlank(familyHeadID)) ? familyHeadID : primaryCaregiverID;
 
-        final CommonPersonObject personObject = getCommonRepository(Utils.metadata().familyMemberRegister.tableName).findByBaseEntityId(baseID);
+        final CommonPersonObject personObject = getCommonRepository(familyMemberTableName()).findByBaseEntityId(baseID);
         FamilyCallDialogModel model = new FamilyCallDialogModel();
 
         if (personObject != null) {
